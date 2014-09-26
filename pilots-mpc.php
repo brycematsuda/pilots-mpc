@@ -42,6 +42,8 @@ $rand = rand(0, count($randomHeaders) - 1);
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/footable.core.min.css">
+  <link rel="stylesheet" href="css/footable.standalone.min.css">  
   <link rel="stylesheet" href="css/meal-layout.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -198,5 +200,6 @@ $rand = rand(0, count($randomHeaders) - 1);
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="js/meal.js"></script>
+    <script src="js/footable.js"></script>
   </body>
   </html>

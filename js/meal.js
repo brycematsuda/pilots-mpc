@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
-  $('input[rel="txtTooltip"]').tooltip();
+$('table').footable();
+
+$('input[rel="txtTooltip"]').tooltip();
 
 // Regex to test for numeric input in decimal form (200.00, 2003.13) from 0000.00 to 4999.99.
 var numRegex = /^[0-4]?([0-9]){1,3}\.([0-9]){2}$/;
@@ -39,9 +41,4 @@ $("input#enter-balance").keyup( function(){
     }
   });
 
-
-$("p#link-disc").click(function() {
-  $("div#disclaimer").slideToggle();
-  return false;
-});
 });
