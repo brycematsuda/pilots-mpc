@@ -1,0 +1,12 @@
+h3, p, th, td {
+  text-align: center;
+}
+
+p.disclaimer {
+  font-size: 80%;
+}
+
+table {
+  margin: 0px auto;
+  table-layout: fixed;
+}
