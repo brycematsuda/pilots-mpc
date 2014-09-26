@@ -1,5 +1,8 @@
 <?php
 
+  // Ensure time zone is always West Coast time in case of server location differences.
+date_default_timezone_set("America/Los_Angeles");
+
   // Constants for meal plan prices and rates per day and week
   // to allow for easy editing from semester to semester.
 
@@ -45,7 +48,7 @@ $rand = rand(0, count($randomHeaders) - 1);
   <link rel="stylesheet" href="css/footable.core.min.css">
   <link rel="stylesheet" href="css/footable.standalone.min.css">  
   <link rel="stylesheet" href="css/meal-layout.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=500px, initial-scale=1">
 </head>
 <body>
   <div class="container">
@@ -97,6 +100,7 @@ $rand = rand(0, count($randomHeaders) - 1);
             </tr>
           </tbody>
         </table>
+        <h4>Compare balance</h4>
         <br />
         <input type="text" rel="txtTooltip" id="enter-balance" class="form-control" maxlength="7" title="Only decimal numbers from 0 to 4999.99 are allowed." data-toggle="tooltip" data-placement="bottom" placeholder="Enter your balance in decimal form (e.g. 1000.00, 24.53)">
         <br />
@@ -114,31 +118,40 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>3</th>
               <th>4</th>
             </tr>
-            <tr class="success">
+            <tr class="warning">
               <th>Current week ending</th>
-              <th colspan="4"><?php echo date('F d, Y', strtotime('next friday'));?></th>
+              <th colspan="4"><?php
+              // Only change weeks once we've past saturday
+              if (strtotime('now') == strtotime('saturday')){
+                echo date('F d, Y', strtotime('saturday'));
+              }
+              else {
+                echo date('F d, Y', strtotime('next saturday'));
+              } ?>
+              </th>
             </tr>
-            <tr class="success">
+            <tr class="warning">
               <th>Your balance</th>
               <td class="user-balance"></td>
               <td class="user-balance"></td>
               <td class="user-balance"></td>
               <td class="user-balance"></td>
             </tr>
-            <tr class="success">
+            <tr class="warning">
               <th>Estimated balance</th>
               <?php
 
               // TODO: Take into account fall break from 2014-10-11 to 2014-10-17)
 
-              $datetime1 = new DateTime('2014-08-22');
+              $datetime1 = new DateTime('2014-08-23');
               $datetime2 = new DateTime('now');
+
               $interval = $datetime1->diff($datetime2)->format('%a');
 
-              $estWeekPlan1 = plan1Start - (2 * plan1DailyRate) - (round($interval/7) * plan1WeeklyRate);
-              $estWeekPlan2 = plan2Start - (2 * plan2DailyRate) - (round($interval/7) * plan2WeeklyRate);
-              $estWeekPlan3 = plan3Start - (2 * plan3DailyRate) - (round($interval/7) * plan3WeeklyRate);
-              $estWeekPlan4 = plan4Start - (2 * plan4DailyRate) - (round($interval/7) * plan4WeeklyRate);
+              $estWeekPlan1 = plan1Start - (3 * plan1DailyRate) - (round($interval/7) * plan1WeeklyRate);
+              $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (round($interval/7) * plan2WeeklyRate);
+              $estWeekPlan3 = plan3Start - (3 * plan3DailyRate) - (round($interval/7) * plan3WeeklyRate);
+              $estWeekPlan4 = plan4Start - (3 * plan4DailyRate) - (round($interval/7) * plan4WeeklyRate);
 
               ?>
               <td id="w-plan1"><?php echo number_format($estWeekPlan1, 2, '.', ''); ?></td>
@@ -146,7 +159,7 @@ $rand = rand(0, count($randomHeaders) - 1);
               <td id="w-plan3"><?php echo number_format($estWeekPlan3, 2, '.', ''); ?></td>
               <td id="w-plan4"><?php echo number_format($estWeekPlan4, 2, '.', ''); ?></td>
             </tr>
-            <tr class="success">
+            <tr class="warning">
               <th>Point difference</th>
               <td class="user-difference" id="w-plan1-diff"></td>
               <td class="user-difference" id="w-plan2-diff"></td>
@@ -168,10 +181,10 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Estimated balance</th>
               <?php 
 
-              $estDailyPlan1 = plan1Start - (2 * plan1DailyRate) - ($interval * plan1DailyRate);
-              $estDailyPlan2 = plan2Start - (2 * plan1DailyRate) - ($interval * plan2DailyRate);
-              $estDailyPlan3 = plan3Start - (2 * plan1DailyRate) - ($interval * plan3DailyRate);
-              $estDailyPlan4 = plan4Start - (2 * plan1DailyRate) - ($interval * plan4DailyRate);
+              $estDailyPlan1 = plan1Start - (3 * plan1DailyRate) - ($interval * plan1DailyRate);
+              $estDailyPlan2 = plan2Start - (3 * plan1DailyRate) - ($interval * plan2DailyRate);
+              $estDailyPlan3 = plan3Start - (3 * plan1DailyRate) - ($interval * plan3DailyRate);
+              $estDailyPlan4 = plan4Start - (3 * plan1DailyRate) - ($interval * plan4DailyRate);
 
               ?>
               <td id="d-plan1"><?php echo number_format($estDailyPlan1, 2, '.', ''); ?></td>
