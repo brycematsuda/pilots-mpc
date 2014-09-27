@@ -122,7 +122,7 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Current week ending</th>
               <th colspan="4"><?php
               // Only change weeks once we've past saturday
-              if (strtotime('now') == strtotime('saturday')){
+              if (date('w', strtotime('now')) == 6) {
                 echo date('F d, Y', strtotime('saturday'));
               }
               else {
