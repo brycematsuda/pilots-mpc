@@ -182,9 +182,9 @@ $rand = rand(0, count($randomHeaders) - 1);
               <?php 
 
               $estDailyPlan1 = plan1Start + (3 * plan1DailyRate) - ($interval * plan1DailyRate);
-              $estDailyPlan2 = plan2Start + (3 * plan1DailyRate) - ($interval * plan2DailyRate);
-              $estDailyPlan3 = plan3Start + (3 * plan1DailyRate) - ($interval * plan3DailyRate);
-              $estDailyPlan4 = plan4Start + (3 * plan1DailyRate) - ($interval * plan4DailyRate);
+              $estDailyPlan2 = plan2Start + (3 * plan2DailyRate) - ($interval * plan2DailyRate);
+              $estDailyPlan3 = plan3Start + (3 * plan3DailyRate) - ($interval * plan3DailyRate);
+              $estDailyPlan4 = plan4Start + (3 * plan4DailyRate) - ($interval * plan4DailyRate);
 
               ?>
               <td id="d-plan1"><?php echo number_format($estDailyPlan1, 2, '.', ''); ?></td>
@@ -201,7 +201,7 @@ $rand = rand(0, count($randomHeaders) - 1);
             </tr>
           </tbody>
         </table>
-        <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week does not necessarily mean you won't be able to deplete all your points by the end of the semester.
+        <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week does not necessarily mean you won't be able to deplete all your points by the end of the semester.</p>
         <p class="disclaimer">disclaimer 2: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up.</p>
         <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on sept. 28, 2014.</p>
         </div>
