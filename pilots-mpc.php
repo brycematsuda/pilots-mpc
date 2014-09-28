@@ -143,15 +143,15 @@ $rand = rand(0, count($randomHeaders) - 1);
 
               // TODO: Take into account fall break from 2014-10-11 to 2014-10-17)
 
-              $datetime1 = new DateTime('2014-08-23');
+              $datetime1 = new DateTime('2014-08-17');
               $datetime2 = new DateTime('now');
 
               $interval = $datetime1->diff($datetime2)->format('%a');
 
-              $estWeekPlan1 = plan1Start - (3 * plan1DailyRate) - (round($interval/7) * plan1WeeklyRate);
-              $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (round($interval/7) * plan2WeeklyRate);
-              $estWeekPlan3 = plan3Start - (3 * plan3DailyRate) - (round($interval/7) * plan3WeeklyRate);
-              $estWeekPlan4 = plan4Start - (3 * plan4DailyRate) - (round($interval/7) * plan4WeeklyRate);
+              $estWeekPlan1 = plan1Start - (3 * plan1DailyRate) - (ceil($interval/7) * plan1WeeklyRate);
+              $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (ceil($interval/7) * plan2WeeklyRate);
+              $estWeekPlan3 = plan3Start - (3 * plan3DailyRate) - (ceil($interval/7) * plan3WeeklyRate);
+              $estWeekPlan4 = plan4Start - (3 * plan4DailyRate) - (ceil($interval/7) * plan4WeeklyRate);
 
               ?>
               <td id="w-plan1"><?php echo number_format($estWeekPlan1, 2, '.', ''); ?></td>
@@ -181,10 +181,10 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Estimated balance</th>
               <?php 
 
-              $estDailyPlan1 = plan1Start - (3 * plan1DailyRate) - ($interval * plan1DailyRate);
-              $estDailyPlan2 = plan2Start - (3 * plan1DailyRate) - ($interval * plan2DailyRate);
-              $estDailyPlan3 = plan3Start - (3 * plan1DailyRate) - ($interval * plan3DailyRate);
-              $estDailyPlan4 = plan4Start - (3 * plan1DailyRate) - ($interval * plan4DailyRate);
+              $estDailyPlan1 = plan1Start + (3 * plan1DailyRate) - ($interval * plan1DailyRate);
+              $estDailyPlan2 = plan2Start + (3 * plan1DailyRate) - ($interval * plan2DailyRate);
+              $estDailyPlan3 = plan3Start + (3 * plan1DailyRate) - ($interval * plan3DailyRate);
+              $estDailyPlan4 = plan4Start + (3 * plan1DailyRate) - ($interval * plan4DailyRate);
 
               ?>
               <td id="d-plan1"><?php echo number_format($estDailyPlan1, 2, '.', ''); ?></td>
@@ -201,11 +201,9 @@ $rand = rand(0, count($randomHeaders) - 1);
             </tr>
           </tbody>
         </table>
-        <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week
-          does not necessarily mean you won't be able to deplete all your points by the end of the semester.
-        <p class="disclaimer">disclaimer 2: while points do transfer from semester to semester, they do not transfer from year to year. you have been warned.
-        <p class="disclaimer">disclaimer 3: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up.</p>
-        <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on sept. 25, 2014.</p>
+        <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week does not necessarily mean you won't be able to deplete all your points by the end of the semester.
+        <p class="disclaimer">disclaimer 2: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up.</p>
+        <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on sept. 28, 2014.</p>
         </div>
       </div>
     </div>
