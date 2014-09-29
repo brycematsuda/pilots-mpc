@@ -54,7 +54,7 @@ $rand = rand(0, count($randomHeaders) - 1);
   <div class="container">
     <div class="row clearfix">
       <div class="col-md-12 column">
-      <h3>Pilots Meal Points Checker</h3>
+        <h3>Pilots Meal Points Checker</h3>
         <h3 style="margin: 0 auto; padding: 0 auto;"><small>"<?php echo $randomHeaders[$rand] ?>"</small></h3>
         <table class="table table-striped table-condensed">
           <thead>
@@ -122,12 +122,12 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Current week ending</th>
               <th colspan="4"><?php
               // Only change weeks once we've past saturday
-              if (date('w', strtotime('now')) == 6) {
-                echo date('F d, Y', strtotime('saturday'));
-              }
-              else {
-                echo date('F d, Y', strtotime('next saturday'));
-              } ?>
+                if (date('w', strtotime('now')) == 6) {
+                  echo date('F d, Y', strtotime('saturday'));
+                }
+                else {
+                  echo date('F d, Y', strtotime('next saturday'));
+                } ?>
               </th>
             </tr>
             <tr class="warning">
@@ -143,15 +143,25 @@ $rand = rand(0, count($randomHeaders) - 1);
 
               // TODO: Take into account fall break from 2014-10-11 to 2014-10-17)
 
-              $datetime1 = new DateTime('2014-08-17');
-              $datetime2 = new DateTime('now');
+              $firstSchoolWeek = new DateTime('2014-08-17');
+              $now = new DateTime('now');
 
-              $interval = $datetime1->diff($datetime2)->format('%a');
+              // If it's Sunday, switch to next week's balance
+              if (date('w', strtotime('now')) == 0) {
+                $latestSunday = new DateTime('next sunday');
+              }
+              // Otherwise, use the most recent sunday
+              else {
+                $latestSunday = new DateTime('last sunday');
+              }
 
-              $estWeekPlan1 = plan1Start - (3 * plan1DailyRate) - (ceil($interval/7) * plan1WeeklyRate);
-              $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (ceil($interval/7) * plan2WeeklyRate);
-              $estWeekPlan3 = plan3Start - (3 * plan3DailyRate) - (ceil($interval/7) * plan3WeeklyRate);
-              $estWeekPlan4 = plan4Start - (3 * plan4DailyRate) - (ceil($interval/7) * plan4WeeklyRate);
+              $dailyInterval = $firstSchoolWeek->diff($now)->format('%a');
+              $weeklyInterval = $firstSchoolWeek->diff($latestSunday)->format('%a');
+
+              $estWeekPlan1 = plan1Start - (3 * plan1DailyRate) - (ceil($weeklyInterval/7) * plan1WeeklyRate);
+              $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (ceil($weeklyInterval/7) * plan2WeeklyRate);
+              $estWeekPlan3 = plan3Start - (3 * plan3DailyRate) - (ceil($weeklyInterval/7) * plan3WeeklyRate);
+              $estWeekPlan4 = plan4Start - (3 * plan4DailyRate) - (ceil($weeklyInterval/7) * plan4WeeklyRate);
 
               ?>
               <td id="w-plan1"><?php echo number_format($estWeekPlan1, 2, '.', ''); ?></td>
@@ -181,10 +191,10 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Estimated balance</th>
               <?php 
 
-              $estDailyPlan1 = plan1Start + (3 * plan1DailyRate) - ($interval * plan1DailyRate);
-              $estDailyPlan2 = plan2Start + (3 * plan2DailyRate) - ($interval * plan2DailyRate);
-              $estDailyPlan3 = plan3Start + (3 * plan3DailyRate) - ($interval * plan3DailyRate);
-              $estDailyPlan4 = plan4Start + (3 * plan4DailyRate) - ($interval * plan4DailyRate);
+              $estDailyPlan1 = plan1Start + (3 * plan1DailyRate) - ($dailyInterval * plan1DailyRate);
+              $estDailyPlan2 = plan2Start + (3 * plan2DailyRate) - ($dailyInterval * plan2DailyRate);
+              $estDailyPlan3 = plan3Start + (3 * plan3DailyRate) - ($dailyInterval * plan3DailyRate);
+              $estDailyPlan4 = plan4Start + (3 * plan4DailyRate) - ($dailyInterval * plan4DailyRate);
 
               ?>
               <td id="d-plan1"><?php echo number_format($estDailyPlan1, 2, '.', ''); ?></td>
@@ -204,13 +214,13 @@ $rand = rand(0, count($randomHeaders) - 1);
         <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week does not necessarily mean you won't be able to deplete all your points by the end of the semester.</p>
         <p class="disclaimer">disclaimer 2: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up.</p>
         <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on sept. 28, 2014.</p>
-        </div>
       </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="js/meal.js"></script>
-    <script src="js/footable.js"></script>
-  </body>
-  </html>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="js/meal.js"></script>
+  <script src="js/footable.js"></script>
+</body>
+</html>
