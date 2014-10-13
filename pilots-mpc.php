@@ -49,6 +49,7 @@ $rand = rand(0, count($randomHeaders) - 1);
   <link rel="stylesheet" href="css/footable.standalone.min.css">  
   <link rel="stylesheet" href="css/meal-layout.css">
   <meta name="viewport" content="width=500px, initial-scale=1">
+  <meta charset="UTF-8">
 </head>
 <body>
   <div class="container">
@@ -56,6 +57,7 @@ $rand = rand(0, count($randomHeaders) - 1);
       <div class="col-md-12 column">
         <h3>Pilots Meal Points Checker</h3>
         <h3 style="margin: 0 auto; padding: 0 auto;"><small>"<?php echo $randomHeaders[$rand] ?>"</small></h3>
+        <hr />
         <table class="table table-striped table-condensed">
           <thead>
             <tr>
@@ -100,6 +102,7 @@ $rand = rand(0, count($randomHeaders) - 1);
             </tr>
           </tbody>
         </table>
+        <hr />
         <h4>Compare balance</h4>
         <br />
         <input type="text" rel="txtTooltip" id="enter-balance" class="form-control" maxlength="7" title="Only decimal numbers from 0 to 4999.99 are allowed." data-toggle="tooltip" data-placement="bottom" placeholder="Enter your balance in decimal form (e.g. 1000.00, 24.53)">
@@ -212,7 +215,7 @@ $rand = rand(0, count($randomHeaders) - 1);
           </tbody>
         </table>
         <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week does not necessarily mean you won't be able to deplete all your points by the end of the semester.</p>
-        <p class="disclaimer">disclaimer 2: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up.</p>
+        <p class="disclaimer">disclaimer 2: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up. all values are calculated based on info from the <a href="http://www.up.edu/housing/default.aspx?cid=6907&amp;pid=2576">up res life page</a>.</p>
         <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on sept. 28, 2014.</p>
       </div>
     </div>
