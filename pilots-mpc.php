@@ -223,7 +223,7 @@ $rand = rand(0, count($randomHeaders) - 1);
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="js/meal.js"></script>
-  <script src="js/footable.js"></script>
+  <script src="js/meal.min.js"></script>
+  <script src="js/footable.min.js"></script>
 </body>
 </html>
