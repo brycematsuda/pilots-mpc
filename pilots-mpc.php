@@ -29,7 +29,6 @@ $randomHeaders = array(
   'how many meal points should i be at right now?',
   'is it time to start panicking and start splurging at mack\'s market?',
   'should i stop spending my points for now?',
-  'here\'s why i\'m buying dinner for you',
   'am i behind on my meal plan?',
   'omnomnomnomnomnom'
   );
@@ -144,9 +143,7 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Estimated balance</th>
               <?php
 
-              // TODO: Take into account fall break from 2014-10-11 to 2014-10-17)
-
-              $firstSchoolWeek = new DateTime('2014-08-17');
+              $startWeek = new DateTime('2014-08-31');
               $now = new DateTime('now');
 
               // If it's Sunday, switch to next week's balance
@@ -158,8 +155,8 @@ $rand = rand(0, count($randomHeaders) - 1);
                 $latestSunday = new DateTime('last sunday');
               }
 
-              $dailyInterval = $firstSchoolWeek->diff($now)->format('%a');
-              $weeklyInterval = $firstSchoolWeek->diff($latestSunday)->format('%a');
+              $dailyInterval = $startWeek->diff($now)->format('%a');
+              $weeklyInterval = $startWeek->diff($latestSunday)->format('%a');
 
               $estWeekPlan1 = plan1Start - (3 * plan1DailyRate) - (ceil($weeklyInterval/7) * plan1WeeklyRate);
               $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (ceil($weeklyInterval/7) * plan2WeeklyRate);
