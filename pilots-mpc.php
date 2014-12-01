@@ -143,12 +143,12 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Estimated balance</th>
               <?php
 
-              $startWeek = new DateTime('2014-08-31');
+              $startWeek = new DateTime('2014-08-24');
               $now = new DateTime('now');
 
               // If it's Sunday, switch to next week's balance
               if (date('w', strtotime('now')) == 0) {
-                $latestSunday = new DateTime('next sunday');
+                $latestSunday = new DateTime('this sunday');
               }
               // Otherwise, use the most recent sunday
               else {
@@ -162,6 +162,20 @@ $rand = rand(0, count($randomHeaders) - 1);
               $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (ceil($weeklyInterval/7) * plan2WeeklyRate);
               $estWeekPlan3 = plan3Start - (3 * plan3DailyRate) - (ceil($weeklyInterval/7) * plan3WeeklyRate);
               $estWeekPlan4 = plan4Start - (3 * plan4DailyRate) - (ceil($weeklyInterval/7) * plan4WeeklyRate);
+
+              // No negative values
+              if ($estWeekPlan1 < 0) {
+                $estWeekPlan1 = 0.00;
+              }
+              if ($estWeekPlan2 < 0) {
+                $estWeekPlan2 = 0.00;
+              }
+              if ($estWeekPlan3 < 0) {
+                $estWeekPlan3 = 0.00;
+              }
+              if ($estWeekPlan4 < 0) {
+                $estWeekPlan4 = 0.00;
+              }
 
               ?>
               <td id="w-plan1"><?php echo number_format($estWeekPlan1, 2, '.', ''); ?></td>
@@ -195,6 +209,20 @@ $rand = rand(0, count($randomHeaders) - 1);
               $estDailyPlan2 = plan2Start + (3 * plan2DailyRate) - ($dailyInterval * plan2DailyRate);
               $estDailyPlan3 = plan3Start + (3 * plan3DailyRate) - ($dailyInterval * plan3DailyRate);
               $estDailyPlan4 = plan4Start + (3 * plan4DailyRate) - ($dailyInterval * plan4DailyRate);
+
+              // No negative values
+              if ($estDailyPlan1 < 0) {
+                $estDailyPlan1 = 0.00;
+              }
+              if ($estDailyPlan2 < 0) {
+                $estDailyPlan2 = 0.00;
+              }
+              if ($estDailyPlan3 < 0) {
+                $estDailyPlan3 = 0.00;
+              }
+              if ($estDailyPlan4 < 0) {
+                $estDailyPlan4 = 0.00;
+              }
 
               ?>
               <td id="d-plan1"><?php echo number_format($estDailyPlan1, 2, '.', ''); ?></td>
