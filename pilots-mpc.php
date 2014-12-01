@@ -241,7 +241,7 @@ $rand = rand(0, count($randomHeaders) - 1);
         </table>
         <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week does not necessarily mean you won't be able to deplete all your points by the end of the semester.</p>
         <p class="disclaimer">disclaimer 2: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up. all values are calculated based on info from the <a href="http://www.up.edu/housing/default.aspx?cid=6907&amp;pid=2576">up res life page</a>.</p>
-        <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on sept. 28, 2014.</p>
+        <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on nov. 30, 2014.</p>
       </div>
     </div>
   </div>
