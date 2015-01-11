@@ -109,7 +109,7 @@ $rand = rand(0, count($randomHeaders) - 1);
         <table class="table table-striped table-condensed">
           <thead>
             <tr>
-              <th colspan="5">Targeted Meal Plan Balances for Fall 2014</th>
+              <th colspan="5">Targeted Meal Plan Balances for Spring 2015</th>
             </tr>
           </thead>
           <tbody>
@@ -143,7 +143,7 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Estimated balance</th>
               <?php
 
-              $startWeek = new DateTime('2014-08-24');
+              $startWeek = new DateTime('2015-01-10');
               $now = new DateTime('now');
 
               // If it's Sunday, switch to next week's balance
@@ -158,10 +158,10 @@ $rand = rand(0, count($randomHeaders) - 1);
               $dailyInterval = $startWeek->diff($now)->format('%a');
               $weeklyInterval = $startWeek->diff($latestSunday)->format('%a');
 
-              $estWeekPlan1 = plan1Start - (3 * plan1DailyRate) - (ceil($weeklyInterval/7) * plan1WeeklyRate);
-              $estWeekPlan2 = plan2Start - (3 * plan2DailyRate) - (ceil($weeklyInterval/7) * plan2WeeklyRate);
-              $estWeekPlan3 = plan3Start - (3 * plan3DailyRate) - (ceil($weeklyInterval/7) * plan3WeeklyRate);
-              $estWeekPlan4 = plan4Start - (3 * plan4DailyRate) - (ceil($weeklyInterval/7) * plan4WeeklyRate);
+              $estWeekPlan1 = plan1Start - (ceil($weeklyInterval/7) * plan1WeeklyRate);
+              $estWeekPlan2 = plan2Start - (ceil($weeklyInterval/7) * plan2WeeklyRate);
+              $estWeekPlan3 = plan3Start - (ceil($weeklyInterval/7) * plan3WeeklyRate);
+              $estWeekPlan4 = plan4Start - (ceil($weeklyInterval/7) * plan4WeeklyRate);
 
               // No negative values
               if ($estWeekPlan1 < 0) {
@@ -205,10 +205,10 @@ $rand = rand(0, count($randomHeaders) - 1);
               <th>Estimated balance</th>
               <?php 
 
-              $estDailyPlan1 = plan1Start + (3 * plan1DailyRate) - ($dailyInterval * plan1DailyRate);
-              $estDailyPlan2 = plan2Start + (3 * plan2DailyRate) - ($dailyInterval * plan2DailyRate);
-              $estDailyPlan3 = plan3Start + (3 * plan3DailyRate) - ($dailyInterval * plan3DailyRate);
-              $estDailyPlan4 = plan4Start + (3 * plan4DailyRate) - ($dailyInterval * plan4DailyRate);
+              $estDailyPlan1 = plan1Start - ($dailyInterval * plan1DailyRate);
+              $estDailyPlan2 = plan2Start - ($dailyInterval * plan2DailyRate);
+              $estDailyPlan3 = plan3Start - ($dailyInterval * plan3DailyRate);
+              $estDailyPlan4 = plan4Start - ($dailyInterval * plan4DailyRate);
 
               // No negative values
               if ($estDailyPlan1 < 0) {
@@ -241,7 +241,7 @@ $rand = rand(0, count($randomHeaders) - 1);
         </table>
         <p class="disclaimer">disclaimer 1: these values are only suggestions. having a large point difference for a given day or week does not necessarily mean you won't be able to deplete all your points by the end of the semester.</p>
         <p class="disclaimer">disclaimer 2: this site is in no way officially affiliated with the university of portland or bon appetit. this serves only as an unofficial guide for spending meal points in a timely manner at up. all values are calculated based on info from the <a href="http://www.up.edu/housing/default.aspx?cid=6907&amp;pid=2576">up res life page</a>.</p>
-        <p class="disclaimer">&copy; 2014 <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on nov. 30, 2014.</p>
+        <p class="disclaimer">&copy; 2014-<?php echo date("Y") ?> <a href="http://brycematsuda.com/">bryce matsuda</a> // last updated on jan. 11, 2015.</p>
       </div>
     </div>
   </div>
